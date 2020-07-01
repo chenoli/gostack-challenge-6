@@ -14,9 +14,9 @@ interface Request {
 
 class CreateTransactionService {
   public async execute({
+    type,
     title,
     value,
-    type,
     category,
   }: Request): Promise<Transaction> {
     const categoriesRepository = getRepository(Category);
@@ -44,7 +44,7 @@ class CreateTransactionService {
 
     const transaction = transactionRepository.create({
       title,
-      category_id: foundCategory.id,
+      category: foundCategory,
       type,
       value,
     });
